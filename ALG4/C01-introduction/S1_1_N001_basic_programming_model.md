@@ -1,15 +1,15 @@
---- 
-title: Java basics, definition of algorithms and basic programming model 
-tags: 
-    - 
-description: 
-authors: Robert Sedgewick, Kevin Wayne 
-source: Algorithms, 4th 
-aliases: 
-    - 
-lang: en-US 
-date: 2026-11-13T12:46:48 
-id: 
+---
+title: Java basics, definition of algorithms and basic programming model
+tags:
+    -
+description:
+authors: Robert Sedgewick, Kevin Wayne
+source: Algorithms, 4th
+aliases:
+    -
+lang: en-US
+date: 2026-11-13T12:46:48
+id: 79b9db14-d50c-4a14-bf09-e9c88e85c133
 ---
 
 # What is an Algorithm

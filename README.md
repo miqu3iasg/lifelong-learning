@@ -99,30 +99,41 @@ is specified here; code headers keep their generated structure untouched.
 
 ```yaml
 ---
-file_name: S1_1_N001_the_elements_of_programming.md
-title: The Elements of Programming
+title: <note title>
+tags:
+    -
 description:
-authors: Harold Abelson, Gerald Jay Sussman, Julie Sussman
-source: Structure and Interpretation of Computer Programs
-location: ch. 1, sec. 1.1, pp. 1-7
-external_urls:
-related:
-lang: pt-BR
-created_at: 2026-10-20T18:08
-modified_at: 2026-10-20T18:08
+authors:
+source:
+location:
+aliases:
+    -
+lang: <lang-code> # en-US or pt-BR
+date: <ISO date>
+id: <id>
 ---
 ```
 
-- `file_name` always matches the real filename; `related` lists other
-  notes by filename; `location` cites where in the source the note
-  belongs. When a file is renamed or moved, these reference fields are
-  updated with it.
-- `lang` records the language the note is written in; the header
-  structure itself is English. `created_at` never changes; `modified_at`
-  changes only on content edits, never on renames.
+- `title` — the note title (matches the filename stem).
+- `tags` — empty list by default; add `- <tag>` as needed.
+- `description` — short description of the note content.
+- `authors` — note authors (if different from source authors).
+- `source` — source book/course identifier.
+- `location` — where in the source the note belongs (chapter, pages).
+- `aliases` — empty list by default; add `- <alias>` as needed.
+- `lang` — language code of the note content (`en-US` or `pt-BR`).
+- `date` — ISO datetime when the note was created (or the date you’re recording).
+- `id` — note identifier (UUID or descriptive string); leave empty `id: ` if unknown.
 
-The PDF export injects the real filename as `file_name` metadata, so a
-stale header makes the exported document lie about its own name.
+The fields `file_name`, `created_at` and `modified_at` are **removed** from this format.
+Use `date` for creation and keep the note body’s edit history if needed.
+
+When a file is renamed or moved, the `title` and `source`/`location` fields
+should be updated to match the new filename and path.
+
+The PDF export injects the real filename as `file_name` metadata into the
+ exported document's reference block, so a stale header makes the exported
+ document lie about its own name.
 
 ## meta.md
 
