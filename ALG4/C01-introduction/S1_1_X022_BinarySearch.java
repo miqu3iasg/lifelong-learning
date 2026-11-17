@@ -7,8 +7,8 @@
  * By:            Robert Sedgewick, Kevin Wayne
  * Location:      p. 58
  *
- * Compilation:   $ javac -d out S1_1_X022_BinarySearch.java
- * Execution:     $ java -cp out S1_1_X022_BinarySearch resources/tinyW.txt < resources/tinyT.txt
+ * Compilation:   $ javac S1_1_X022_BinarySearch.java
+ * Execution:     $ java S1_1_X022_BinarySearch tinyW.txt < tinyT.txt
  *
  * 1.1.22 Write a version of BinarySearch that uses the recursive rank() given on page
  * 25 and traces the method calls. Each time the recursive method is called, print the argu-
