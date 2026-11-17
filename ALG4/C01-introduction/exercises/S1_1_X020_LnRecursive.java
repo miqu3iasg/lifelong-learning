@@ -21,7 +21,8 @@
  * Copyright:     (c) 2026 Miquéias Medeiros <https://github.com/miqu3iasg>.
  */
 
-public class S1_1_X020_LnRecursive {
+public class S1_1_X020_LnRecursive
+{
 
     /**
      * Calculates the natural logarithm of the factorial of a given number.
@@ -31,7 +32,8 @@ public class S1_1_X020_LnRecursive {
      * @param n The number whose factorial's natural logarithm will be calculated.
      * @return The natural logarithm of {@code n!}.
      */
-    public static double lnFactorial(int n) {
+    public static double lnFactorial(int n)
+    {
         /*
          * Seems that to calculate a natural logarithm of a factorial number N,
          * we need first define what is a factorial number, and apply this definition
@@ -74,7 +76,8 @@ public class S1_1_X020_LnRecursive {
         return Math.log(n) + lnFactorial(n - 1);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         int N = Integer.parseInt(args[0]);
         System.out.printf("ln(%d!) = %.6f%n", N, lnFactorial(N));
     }

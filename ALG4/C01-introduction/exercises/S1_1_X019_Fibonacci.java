@@ -40,7 +40,8 @@
  */
 import java.util.*;
 
-public class S1_1_X019_Fibonacci {
+public class S1_1_X019_Fibonacci
+{
     /**
      * Computes the N-th number in the Fibonacci sequence using an array to store
      * previously calculated values.
@@ -48,7 +49,8 @@ public class S1_1_X019_Fibonacci {
      * @param N the index of the Fibonacci number to calculate, where F(0) = 0 and F(1) = 1
      * @return the N-th Fibonacci number
      */
-    public static long F(int N) {
+    public static long F(int N)
+    {
         /*
          We have a Fibonacci sequence here, where each number is derived from the sum of
          the last two numbers, it grows exponentially O(2^n).
@@ -67,7 +69,8 @@ public class S1_1_X019_Fibonacci {
         I start with index two (i = 2) because the last two positions have had already occupied by the
         first numbers of Fibonacci sequence.
         */
-        for (int i = 2; i <= N; i++) {
+        for (int i = 2; i <= N; i++)
+        {
             /*
             Here I abstract the Fibonacci algorithm itself, but using the array accessing specific
             memory positions.
@@ -78,7 +81,8 @@ public class S1_1_X019_Fibonacci {
         return fib[N];
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
 
         /*
         Fibonacci values grow exponentially, and the execution time of the
@@ -103,7 +107,8 @@ public class S1_1_X019_Fibonacci {
         */
 
         /* NOTE: this code need to be commented so the maximum value of N can be calculated.*/
-        for (int N = 0; N < 100; N++) {
+        for (int N = 0; N < 100; N++)
+        {
             long start = System.nanoTime();
             System.out.println(N + " " + F(N)); // Process execution
             long end = System.nanoTime();
@@ -121,7 +126,7 @@ public class S1_1_X019_Fibonacci {
         int N = 46;
         double timeLimit = 3_600_000.0; // One hour, in milliseconds
         double growthRate =
-                (1 + Math.sqrt(5)) / 2; // provided by the article above, this is our T(n)
+            (1 + Math.sqrt(5)) / 2; // provided by the article above, this is our T(n)
 
         /*
         We don't raise growthRate to N because measuredTime already represents the execution
@@ -129,7 +134,8 @@ public class S1_1_X019_Fibonacci {
         estimating the execution time relative to F(46), rather than calculating it from the
         starting point n = 0.
         */
-        while (measuredTime <= timeLimit) {
+        while (measuredTime <= timeLimit)
+        {
             measuredTime *= growthRate;
             N++;
         }

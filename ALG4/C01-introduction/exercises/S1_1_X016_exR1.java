@@ -21,12 +21,14 @@
  * Copyright:     (c) 2026 Miquéias Medeiros <https://github.com/miqu3iasg>.
  */
 
-public class S1_1_X016_exR1 {
+public class S1_1_X016_exR1
+{
 
     /*
      * 1.1.16 Give the value of exR1(6):
      */
-    public static String exR1(int n) {
+    public static String exR1(int n)
+    {
         /*
          * The idea for this statement would be decreasing the value of n until this
          * condition was valid, but this never happens, this condition is never satisfied
@@ -44,7 +46,8 @@ public class S1_1_X016_exR1 {
     /*
      * 1.1.17 Criticize the following recursive function:
      */
-    public static String exR2(int n) {
+    public static String exR2(int n)
+    {
         /*
          * The same thing happens here, but the condition is placed after the recursive
          * call and never returns anything. This is a inifite loop as well, even if the value
