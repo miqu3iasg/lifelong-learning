@@ -1,18 +1,15 @@
----
-file_name: S1_1_N001_basic_programming_model.md
-title: Java basics, definition of algorithms and basic programming model
-description:
-authors: Robert Sedgewick, Kevin Wayne
-source: Algorithms, 4th
-location: ch. 1, sec. 1.1, pp. 1-40
-external_urls:
-    - https://hai.stanford.edu/ai-definitions/what-is-an-algorithm
-    - https://algs4.cs.princeton.edu/11model/
-    - https://www.cs.yale.edu/homes/aspnes/pinewiki/CS365(2f)Notes.html
-related:
-lang: en-US # switch language
-created_at: 2026-10-24T20:26
-modified_at: 2026-10-24T22:29
+--- 
+title: Java basics, definition of algorithms and basic programming model 
+tags: 
+    - 
+description: 
+authors: Robert Sedgewick, Kevin Wayne 
+source: Algorithms, 4th 
+aliases: 
+    - 
+lang: en-US 
+date: 2026-11-13T12:46:48 
+id: 
 ---
 
 # What is an Algorithm
