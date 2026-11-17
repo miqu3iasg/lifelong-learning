@@ -4,6 +4,7 @@
 
 **Authors:** Eric Lehman, F. Thomson Leighton, Albert R. Meyer
 **Edition:** 2015
+**Type:** book
 **Subject:** Discrete Mathematics, Probability, and Mathematical Foundations of Computer Science
 
 _Mathematics for Computer Science_ develops the mathematical foundations needed for computer science, with an emphasis on rigorous reasoning rather than calculation alone.
@@ -35,40 +36,6 @@ By completing this book, I should be able to:
 - Calculate and interpret expectation and variance.
 - Analyze deviations from expected values.
 - Understand random walks and their mathematical properties.
-
-## Reading Progress
-
-### Part I — Proofs
-
-- [x] Chapter 1 — Propositions
-- [ ] Chapter 2 — Patterns of Proof
-- [ ] Chapter 3 — Induction
-- [ ] Chapter 4 — Number Theory
-
-### Part II — Structures
-
-- [ ] Chapter 5 — Graph Theory
-- [ ] Chapter 6 — Directed Graphs
-- [ ] Chapter 7 — Relations and Partial Orders
-- [ ] Chapter 8 — State Machines
-
-### Part III — Counting
-
-- [ ] Chapter 9 — Sums and Asymptotics
-- [ ] Chapter 10 — Recurrences
-- [ ] Chapter 11 — Cardinality Rules
-- [ ] Chapter 12 — Generating Functions
-- [ ] Chapter 13 — Infinite Sets
-
-### Part IV — Probability
-
-- [ ] Chapter 14 — Events and Probability Spaces
-- [ ] Chapter 15 — Conditional Probability
-- [ ] Chapter 16 — Independence
-- [ ] Chapter 17 — Random Variables and Distributions
-- [ ] Chapter 18 — Expectation
-- [ ] Chapter 19 — Deviations
-- [ ] Chapter 20 — Random Walks
 
 ## Notes
 

@@ -4,6 +4,7 @@
 
 **Author:** Robert Sedgewick; Kevin Wayne  
 **Edition:** 4th  
+**Type:** book
 **Subject:** Algorithms and Data Structures
 
 _Algorithms_ presents a systematic study of fundamental algorithms and data structures, emphasizing implementation, mathematical analysis, and empirical evaluation of performance. The book covers foundational programming techniques, abstract data types, algorithm analysis, sorting, searching, graph processing, and string processing, followed by selected advanced topics. Its implementations use Java and an approach based on modular design and data abstraction.
@@ -26,84 +27,34 @@ By completing this book, I should be able to:
 - Apply algorithmic problem-solving techniques to practical computational problems and select appropriate algorithms and data structures based on their requirements.
 - Understand selected advanced topics, including event-driven simulation, B-trees, suffix arrays, network flow, reductions, and computational intractability.
 
-## Progress
+## Conventions
 
-Each chapter is listed with its sections. A checked item indicates that the corresponding material has been completed.
+This book follows the repository's general naming convention, with the adaptations that Java requires.
 
-- [/] **Chapter 1 — Fundamentals** (`C01-fundamentals`)
-  - [x] 1.1 Basic Programming Model
-  - [ ] 1.2 Data Abstraction
-  - [ ] 1.3 Bags, Queues, and Stacks
-  - [ ] 1.4 Analysis of Algorithms
-  - [ ] 1.5 Case Study: Union-Find
-- [ ] **Chapter 2 — Sorting** (`C02-sorting`)
-  - [ ] 2.1 Elementary Sorts
-  - [ ] 2.2 Mergesort
-  - [ ] 2.3 Quicksort
-  - [ ] 2.4 Priority Queues
-  - [ ] 2.5 Applications
-- [ ] **Chapter 3 — Searching** (`C03-searching`)
-  - [ ] 3.1 Symbol Tables
-  - [ ] 3.2 Binary Search Trees
-  - [ ] 3.3 Balanced Search Trees
-  - [ ] 3.4 Hash Tables
-  - [ ] 3.5 Applications
-- [ ] **Chapter 4 — Graphs** (`C04-graphs`)
-  - [ ] 4.1 Undirected Graphs
-  - [ ] 4.2 Directed Graphs
-  - [ ] 4.3 Minimum Spanning Trees
-  - [ ] 4.4 Shortest Paths
-- [ ] **Chapter 5 — Strings** (`C05-strings`)
-  - [ ] 5.1 String Sorts
-  - [ ] 5.2 Tries
-  - [ ] 5.3 Substring Search
-  - [ ] 5.4 Regular Expressions
-  - [ ] 5.5 Data Compression
-- [ ] **Chapter 6 — Context** (`C06-context`)
-  - [ ] Event-driven simulation, B-trees, suffix arrays, network flow, reductions, and intractability
-
-## Naming Convention
-
-This book follows the repository's general naming convention, with the adaptations that Java requires. The chapter directories are:
+Java requires the name of a public class to match the name of its file, and class names cannot contain dots or dashes. Java files therefore use underscores in the section part and write the description in camel case, which is also the class name:
 
 ```text
-ALG4/
-├── meta.md
-├── resources/
-├── templates/
-├── C01-introduction/
-│   ├── notes/
-│   │   └── out/
-│   └── exercises/
-│       └── out/
-├── C02-.../
-```
-
-Java requires the name of a public class to match the name of its file, and class names cannot contain dashes or dots. Java files therefore use underscores instead of them, and the description is written in camel case, which is also the class name:
-
-```text
-SX_X_X_TXXX_Description.java
+S<m>[_<n>[_<p>]]_X<TTT>_<CamelCaseDescription>.java
 ```
 
 Examples:
 
 ```text
-exercises/S1_1_X024_EuclidsAlgorithm.java
-exercises/S1_3_X001_FixedCapacityStack.java
-notes/S1_4_P001_ThreeSum.java
-notes/S2_1_P001_Selection.java
+S1_1_X024_EuclidsAlgorithm.java
+S1_3_X001_FixedCapacityStack.java
+S1_4_P001_ThreeSum.java
 ```
 
-Notes written in Markdown keep the general format (for example, `notes/S1.1-N001-basics.md`).
+Notes written in Markdown keep the general repository format (for example, `S1_1_N001_basic_programming_model.md`).
 
-The compiled `.class` files go to an `out/` directory inside the same `notes/` or `exercises/` directory as the source files, never next to them. A source in `exercises/` is compiled to `exercises/out/`, and a source in `notes/` to `notes/out/`. For example, from `C01-fundamentals/exercises/`:
+Compiled `.class` files are produced in place, next to their sources, and are never versioned:
 
 ```text
-javac -d out S1_1_X024_EuclidsAlgorithm.java
-java -cp out S1_1_X024_EuclidsAlgorithm
+javac S1_1_X024_EuclidsAlgorithm.java
+java S1_1_X024_EuclidsAlgorithm
 ```
 
-The `out/` directories are build artifacts and are not versioned.
+Book data files (for example, `tinyT.txt`, `tinyW.txt`) sit flat in the chapter directory, next to the exercise that uses them.
 
 ## Notes
 
