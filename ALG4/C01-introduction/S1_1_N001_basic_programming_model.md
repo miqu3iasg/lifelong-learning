@@ -1,5 +1,5 @@
 ---
-file_name: S1.1-N001_basic-programming-model.md
+file_name: S1_1_N001_basic_programming_model.md
 title: Java basics, definition of algorithms and basic programming model
 description:
 authors: Robert Sedgewick, Kevin Wayne

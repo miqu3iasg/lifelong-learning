@@ -1,3 +1,17 @@
+---
+file_name: S1_1_N001_the_elements_of_programming.md
+title: The Elements of Programming
+description:
+authors: Harold Abelson, Gerald Jay Sussman, Julie Sussman
+source: Structure and Interpretation of Computer Programs
+location: ch. 1, sec. 1.1, pp. 1-7
+external_urls:
+related:
+lang: pt-BR
+created_at: 2026-10-20T18:08
+modified_at: 2026-10-20T18:08
+---
+
 # Structure and Interpretation of Computer Programs (SICP)
 
 **Autores:** Harold Abelson, Gerald Jay Sussman, Julie Sussma

@@ -1,4 +1,4 @@
-;;; File:          S1.1.6-X005_aplicative_or_normal_order.scm
+;;; File:          S1_1_6_X005_aplicative_or_normal_order.scm
 ;;; Author:        Miquéias Medeiros <https://github.com/miqu3iasg>
 ;;; Created:       2026-10-01
 ;;; Modified:      2026-10-01
@@ -13,14 +13,14 @@
 ;;;
 ;;; Usage:
 ;;;     Run:
-;;;     $ mit-scheme --quiet --load C01-S1.1.6-E005_aplicative_or_normal_order.scm
+;;;     $ mit-scheme --quiet --load S1_1_6_X005_aplicative_or_normal_order.scm
 ;;;
 ;;;     To evaluate line by line, use ,ee and ,er in the REPL.
 ;;;
 ;;; References:
-;;;     - notes/S1.1.5-P005_substituition_model_procedure_application.scm
-;;;     - notes/S1.1.6-P006_conditionals_predicates.scm
-;;;     - notes/S1.1.4-P004_compound_procedures.scm
+;;;     - S1_1_5_P005_substituition_model_procedure_application.scm
+;;;     - S1_1_6_P006_conditionals_predicates.scm
+;;;     - S1_1_4_P004_compound_procedures.scm
 ;;;     - https://berkeley-cs61as.github.io/textbook/normal-order-and-applicative-order.html
 ;;;     - https://cs.stackexchange.com/questions/40758/difference-between-normal-order-and-applicative-order-evaluation
 ;;;

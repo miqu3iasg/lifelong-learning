@@ -1,4 +1,4 @@
-; File:          S1.1.4-P004_compound_procedures.scm
+; File:          S1_1_4_P004_compound_procedures.scm
 ; Author:        Miquéias Alves Medeiros <https://github.com/miqu3iasg>
 ; Created:       2026-09-23
 ; Modified:      2026-09-24

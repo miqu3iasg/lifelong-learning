@@ -1,4 +1,4 @@
-;;; File:          S1.1.6-X001_evaluation.scm
+;;; File:          S1_1_6_X001_evaluation.scm
 ;;; Author:        Miquéias Medeiros <https://github.com/miqu3iasg>
 ;;; Created:       2026-09-26
 ;;; Modified:      2026-09-26
@@ -18,7 +18,7 @@
 ;;;
 ;;; Usage:
 ;;;     Run:
-;;;     $ mit-scheme --quiet --load C01-S1.1.6-E001_evaluation.scm
+;;;     $ mit-scheme --quiet --load S1_1_6_X001_evaluation.scm
 ;;;
 ;;;     To evaluate line by line, use ,ee and ,er in the REPL.
 ;;;

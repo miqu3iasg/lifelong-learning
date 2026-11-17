@@ -1,3 +1,17 @@
+---
+file_name: S1_1_N001_o_que_sao_provas_matematicas.md
+title: O que são provas matemáticas
+description:
+authors: Eric Lehman, F. Thomson Leighton, Albert R. Meyer
+source: Mathematics for Computer Science
+location: ch. 1, sec. 1.1, pp. 3-8
+external_urls:
+related:
+lang: pt-BR
+created_at: 2026-09-17T12:30
+modified_at: 2026-09-17T12:30
+---
+
 # O que são provas matemáticas _(Lehman et al., 2018, pp. 3–8)_
 
 O objetivo principal desse texto é ensinar como utilizar do pensamento
