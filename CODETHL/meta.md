@@ -1,46 +1,42 @@
-# The Hidden Language of Computer Hardware and Software
+# CODETHL — The Hidden Language of Computer Hardware and Software
 
-- **ID:** 001THLCHS26
-- **Type:** Book
-- **Author:** Charles Petzold
-- **Started:** 2026
-- **Status:** In progress
+<!-- Written once, when the source is created, and never updated again.
+     Progress is derived from the structure: the highest chapter directory
+     with content is the progress. -->
 
-## About
+## Overview
 
-Book about how computers work from the lowest levels of
-hardware and binary representation up to software.
+**Type:** book
+**Author:** Charles Petzold
+**Edition:** 2nd
+**Subject:** Computer hardware, digital logic, and how software relates to hardware
 
-## Topics
+_Code: The Hidden Language of Computer Hardware and Software_ explains how
+computers work from the lowest levels — binary representation, logic gates,
+Boolean algebra, and digital circuits — up through memory, the CPU, machine
+code, assembly, operating systems, and software.
 
-- Binary
-- Logic gates
-- Boolean algebra
-- Digital circuits
-- CPU
-- Memory
-- Assembly
-- Machine code
-- Operating systems
-- Software
+## Bibliographic Reference
 
-## Structure
+<!-- Formatted according to ABNT2 standards. -->
 
-- `notes/` — notes and concepts learned
-- `exercises/` — exercises and problems
-- `code/` — code written during the study
-- `resources/` — external resources and references
+PETZOLD, Charles. Code: the hidden language of computer hardware and
+software. 2. ed. Redmond: Microsoft Press, 2022.
 
-## Progress
+## Learning Objectives
 
-- [x] Chapter 1
-- [x] Chapter 2
-- [x] Chapter 3
-- [x] Chapter 4
-- [x] Chapter 5
-- [x] Chapter 6
-- [x] Chapter 7
-- [ ] Chapter 8
-- [ ] Chapter 9
-- [ ] Chapter 10
-- [ ] Chapter 11
+By completing this book, I should be able to:
+
+- Reason about binary representation and Boolean algebra.
+- Understand how logic gates compose into adders, memory, and the CPU.
+- Follow the path from transistors to machine code and assembly.
+- Explain how an operating system and applications relate to the hardware.
+
+## Notes
+
+The book requires no prior hardware knowledge; it builds everything from
+first principles. Study notes may follow the book's chapters directly.
+
+## Links
+
+- Official website — https://www.codehiddenlanguage.com

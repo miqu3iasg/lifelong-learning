@@ -1,259 +1,200 @@
 # Lifelong Learning
 
-A self-directed journey of learning built around textbooks, following the breadth and depth of rigorous undergraduate and graduate-level programs from leading universities. It spans Computer Science, Mathematics, Physics, Machine Learning, and any other field worth studying seriously.
+A self-directed journey of learning built around sources: books, courses,
+video series, articles, and papers. It follows the breadth and depth of
+rigorous undergraduate and graduate-level programs from leading
+universities, spanning Computer Science, Mathematics, Physics, Machine
+Learning, and any other field worth studying seriously.
 
-## About
+The learning is organized around sources rather than individual online
+platforms. Each source represents a course or a substantial block of study
+and has its own directory, identified by a unique abbreviation derived from
+the source's title, optionally followed by its edition number. `ALG4`
+identifies _Algorithms_, 4th edition; `DISMATH8` identifies _Discrete
+Mathematics and Its Applications_, 8th edition; `CODETHL` identifies
+_Code: The Hidden Language of Computer Hardware and Software_. The
+abbreviation should be descriptive, recognizable, and distinct from every
+other one.
 
-This repository contains the materials, notes, exercises, implementations, and projects developed throughout a comprehensive self-directed education across multiple areas of knowledge.
+This README is the source of truth. It documents invariants: patterns and
+placement rules, not the current contents. If a rule changes, change it
+here first.
 
-The learning is organized around books rather than individual online courses. Each book represents a course or a substantial block of study and has its own directory, identified by a unique abbreviation derived from the book's title. When applicable, the directory name also includes the edition number.
-
-The goal is to build a coherent body of knowledge across the fundamental areas of science and technology, progressing from mathematical and theoretical foundations to applied and advanced topics. Computer Science (systems, algorithms, programming languages, software engineering) is one of the core areas, alongside Mathematics, Physics, Machine Learning, and others that may be added over time. The areas are meant to reinforce one another: mathematics underpins computing, physics, and machine learning alike, and programming is a tool for exploring all of them.
-
-## Learning Map
-
-Everything is organized by book. The `resources/` directory holds the supporting material, including the catalog for the programming track.
-
-- `resources/catalogo-cursos-cs-es.pdf` — catalog of the programming track: the books on programming, and on the mathematics used in programming, with their sequence and organization. It does not cover the other areas.
-- `exports/` — every PDF generated from the notes, mirroring the book and chapter structure.
-- `<BOOK_ID>/` — individual book and its associated study materials.
-- `<BOOK_ID>/meta.md` — metadata, overview, objectives, reading progress, and useful links.
-- `<BOOK_ID>/` — exercises, implementations, notes, and other study material.
-
-A book's directory name consists of its abbreviation, optionally followed by its edition number. For example, `ALG4` identifies _Algorithms_, 4th edition; `DISMATH8` identifies _Discrete Mathematics and Its Applications_, 8th edition; and `MCS` identifies _Mathematics for Computer Science_, for which no edition number is included in the directory name. The same rule applies to every area: `PRML` identifies _Pattern Recognition and Machine Learning_, and `GRIFFEM4` identifies _Introduction to Electrodynamics_, 4th edition.
-
-## Structure
+## Layout
 
 ```text
 .
-├── resources/
-│   ├── templates/
-│   └── catalogo-cursos-cs-es.pdf
-│
-├── templates/
-│   ├── meta-template.md
-│   ├── notes_en.tex
-│   └── notes_pt-br.tex
-│
-├── exports/                  # all generated PDFs, mirroring the tree below
-│   ├── <BOOK_ID>/
-│   │   └── C01-<chapter-title>/
-│   │       └── notes/
+├── templates/         root templates: meta-template.md, notes-en.tex, notes-pt-br.tex
+├── materials/         staged source files and the track catalog
+├── attachments/       images and other files referenced by notes
+├── .build/            compilation byproducts, never versioned
+├── <SOURCE_ID>/       one directory per source
+│   ├── meta.md        bookplate, written once, never updated
+│   ├── .exports-root  enables this source's exports/
+│   ├── materials/     the source's own files
+│   ├── templates/     pre-filled templates, only when the source needs them
+│   ├── exports/       generated PDFs, mirroring the unit paths
+│   ├── C01-<title>/   first unit: chapter, lecture, episode or part
+│   ├── C02-<title>/   ...
 │   └── ...
-│
-├── .build/                   # compilation byproducts (not versioned)
-│
-├── <BOOK_ID>/
-│   ├── meta.md
-│   ├── resources/
-│   ├── templates/
-│   ├── C01-<chapter-title>/
-│   │   ├── notes/
-│   │   └── exercises/
-│   ├── C02-<chapter-title>/
-│   │   ├── notes/
-│   │   └── exercises/
-│   └── ...
-│
-├── <BOOK_ID>/
-│   ├── meta.md
-│   ├── resources/
-│   ├── templates/
-│   ├── C01-<chapter-title>/
-│   │   ├── notes/
-│   │   └── exercises/
-│   └── ...
-│
 └── README.md
 ```
 
-Material within each book directory is organized by chapter, with separate subdirectories for notes and exercises. Code is kept alongside notes rather than in a separate directory, since code files are also annotated with explanatory comments and serve as notes in their own right. The exact internal structure of each book directory may vary according to the nature of the material (a programming book, a mathematics book, and a physics book will naturally produce different kinds of artifacts) — see [Naming Convention](#naming-convention) below for the full file and directory naming rules.
+No folders by area, language or date. Directories beginning with `_` are
+private and excluded from version control.
 
-## Templates
+## Units and Files
 
-The root `templates/` directory holds the base templates used across the entire repository:
-
-- A template for each book's `meta.md`, defining the standard fields every book index should have, including bibliographic information, subject and scope, objectives, progress, and links.
-- A template for LaTeX notes, used as the starting point for the long-form, typeset version of study notes.
-
-Each book also has its own `templates/` directory. It carries copies of the relevant templates, pre-filled with information specific to that book — title, bibliography, author, and other metadata that would otherwise have to be re-entered by hand every time a new note or the book's `meta.md` is created. This keeps the root templates generic and reusable, while the per-book copies remove repetitive setup work.
-
-The `resources/templates/` directory holds shared resources and templates that do not belong exclusively to an individual book.
-
-Notes are intentionally kept in two forms: the working Markdown/code notes described below, and a typeset PDF version. This redundancy is deliberate — long-term permanence of the notes matters, and having both a lightweight working format and a polished, typeset archival format is a goal in itself, independent of strict necessity.
-
-## Book Organization
-
-Each book directory is centered around a primary textbook, regardless of the area it belongs to.
-
-The `meta.md` file inside each book directory serves as the book index and contains:
-
-- Book and author information.
-- Subject and scope.
-- Learning objectives.
-- Reading progress.
-- Relevant notes.
-- Useful external resources.
-
-Study artifacts are kept separately from `meta.md` so that the metadata remains concise and easy to inspect.
-
-## Exports
-
-All PDFs live in a single `exports/` directory at the root of the repository, regardless of whether they came from Markdown (through Pandoc), LaTeX or Typst. Books do not have their own `exports/` folder. Inside `exports/`, each PDF sits at the same relative path as its source note, so `ALG4/C01-intro/notes/S1.1-N001-basics.md` becomes `exports/ALG4/C01-intro/notes/S1.1-N001-basics.pdf`. Mirroring the path is what keeps two books, or two chapters, with identically named notes from overwriting each other, since filenames repeat neither the book nor the chapter identifier.
-
-Compilation byproducts, such as the auxiliary files, logs and SyncTeX data that LaTeX produces, go to a hidden `.build/` directory at the root, mirrored the same way. It is never versioned. Only the PDFs in `exports/` are committed, and the LaTeX source itself is not versioned, which keeps the repository focused on the finished, permanent artifact rather than the intermediate source used to produce it.
-
-The location is decided by one shared module in the Neovim configuration, which treats the repository root (the folder containing `.git`) as the base. Notes can therefore be written anywhere in the repository and the output still lands in the same place. PDFs of private notes, which live in directories beginning with `_`, are not versioned either (see [Private Material](#private-material)).
-
-## Naming Convention
-
-Each book directory is identified by an abbreviation derived from its title. When applicable, the abbreviation is followed directly by the edition number, without a separator. The edition number is optional.
-
-Examples of book directory names include:
-
-- `ALG4` — _Algorithms_, 4th edition.
-- `DISMATH8` — _Discrete Mathematics and Its Applications_, 8th edition.
-- `MCS` — _Mathematics for Computer Science_.
-- `CODETHL` — _Code: The Hidden Language of Computer Hardware and Software_.
-- `SICP` — _Structure and Interpretation of Computer Programs_.
-- `PRML` — _Pattern Recognition and Machine Learning_.
-- `GRIFFEM4` — _Introduction to Electrodynamics_, 4th edition.
-
-The abbreviation should be descriptive, recognizable, and sufficiently distinct from those of other books in the repository. Edition numbers are included when applicable and useful for distinguishing a specific edition.
-
-Within each book directory, material is organized by chapter, with separate subdirectories for notes and exercises.
+Material inside a source is organized by unit, one directory per chapter,
+lecture, episode or part, numbered in source order:
 
 ```text
-<BOOK_ID>/
-├── meta.md
-├── resources/
-├── templates/
-├── C01-<chapter-title>/
-│   ├── notes/
-│   └── exercises/
-├── C02-<chapter-title>/
-│   ├── notes/
-│   └── exercises/
-└── ...
+C01-<unit-title>/
 ```
 
-There is no separate `code/` directory. Code files also serve as notes — they are written with explanatory comments — so they live in `notes/` alongside conceptual notes, distinguished by their content type (`PXXX`, see below). This applies to any area where code is part of the study, such as algorithms, numerical methods, simulations, or machine learning experiments.
+A unit directory contains only flat study files — never subfolders.
+There are no `notes/` and `exercises/` directories: the type prefix in
+each filename already tells what a file is, and flat files keep every
+artifact of a unit side by side. An atomic source (an article or paper)
+has no unit directories; its files sit directly in the source root.
 
-Since the book and the chapter are already given by the directories themselves, neither needs to be repeated in filenames.
-
-### File Naming
-
-Files follow the general format:
+Files follow one universal pattern:
 
 ```text
-SX.X.X-TXXX-description.ext
+S<m>[_<n>[_<p>]]_<T><NNN>_<slug>.<ext>
 ```
 
-Where:
+- `S<m>[_<n>[_<p>]]` — the section of the source, with underscore-separated
+  levels (`S1.1.2` is written `S1_1_2`). `S00` is general material not tied
+  to a specific section.
+- `<T><NNN>` — content type and a zero-padded sequential number, restarting
+  within each section: `N` note, `P` program or code example annotated with
+  explanatory comments, `X` exercise. Code files are notes in their own
+  right and live in the same unit as conceptual notes. Alphabetical order —
+  N, P, S, X — is the pedagogical reading order.
+- `<slug>` — snake_case, lowercase, ASCII.
 
-- `SX.X.X`: Section identifier, based on the source book.
-- `TXXX`: Content type and sequential number.
-- `description`: Short, descriptive name.
-- `ext`: File extension.
-
-Some languages do not accept dashes or dots in file names. In those cases, underscores replace them, and the description is written in camel case, for example: `S1_1_X024_EuclidsAlgorithm.java`.
-
-### Content Types
-
-- `NXXX`: Note.
-- `PXXX`: Program or code example, annotated with explanatory comments — stored in `notes/` alongside conceptual notes, since it doubles as one.
-- `XXXX`: Exercise.
-- `S00`: General chapter material not tied to a specific section.
-
-The numbering of notes, programs, and exercises restarts within each section.
+The pattern uses only `[A-Za-z0-9_]` plus the extension dot, so every
+filename is a valid identifier in every mainstream language. A language
+may require one deviation (Java: the slug is camelCase so it matches the
+public class name); no other deviations exist. Notes and code are written
+in English or Portuguese, and the slug keeps the language they were
+written in.
 
 Examples:
 
 ```text
-notes/S1.1.1-N001-procedures.md
-notes/S1.1.1-P001-square.scm
-exercises/S1.1.2-X001-evaluate-expression.scm
-exercises/S1_1_X024_EuclidsAlgorithm.java
-notes/S1_4_P012_integral_calculator.c
-notes/S00-N001-chapter-summary.md
+S1_1_N001_the_elements_of_programming.md
+S1_1_1_P001_expressions.scm
+S1_1_6_X001_evaluation.scm
+S1_1_X016_exR1.java
+S00_N001_chapter_summary.md
 ```
 
-Any book-specific conventions (e.g. programming language used, exercise style) are documented in that book's own `meta.md`.
+## Headers
 
-## Progress
+Every Markdown note carries a frontmatter header; every code file carries
+the comment block the header snippet generates. Only the Markdown header
+is specified here; code headers keep their generated structure untouched.
 
-Reading progress is tracked directly in each book's `meta.md` using Markdown checkboxes.
-
-For example:
-
-```markdown
-- [ ] Chapter 1 — Introduction
-- [x] Chapter 2 — Fundamentals
-- [ ] Chapter 3 — Advanced Topics
+```yaml
+---
+file_name: S1_1_N001_the_elements_of_programming.md
+title: The Elements of Programming
+description:
+authors: Harold Abelson, Gerald Jay Sussman, Julie Sussman
+source: Structure and Interpretation of Computer Programs
+location: ch. 1, sec. 1.1, pp. 1-7
+external_urls:
+related:
+lang: pt-BR
+created_at: 2026-10-20T18:08
+modified_at: 2026-10-20T18:08
+---
 ```
 
-A checked item indicates that the corresponding material has been completed.
+- `file_name` always matches the real filename; `related` lists other
+  notes by filename; `location` cites where in the source the note
+  belongs. When a file is renamed or moved, these reference fields are
+  updated with it.
+- `lang` records the language the note is written in; the header
+  structure itself is English. `created_at` never changes; `modified_at`
+  changes only on content edits, never on renames.
 
-Completion of a chapter does not necessarily imply mastery. The learning is intended to involve reading, problem solving, implementation, experimentation, and review.
+The PDF export injects the real filename as `file_name` metadata, so a
+stale header makes the exported document lie about its own name.
+
+## meta.md
+
+A bookplate. Written once, when the source is created, and never updated
+again: bibliographic reference (ABNT), source type, subject and scope,
+learning objectives, links. Anything that changes over time — progress
+above all — belongs in the structure, not in this file. The highest unit
+directory with content is the progress. Book-specific conventions, such
+as the programming language used in exercises, live in the source's own
+`meta.md`.
+
+## Templates
+
+The root `templates/` directory holds the base templates: the `meta.md`
+bookplate template and one LaTeX template per language (`notes-en.tex`,
+`notes-pt-br.tex`). A source with conventions of its own keeps pre-filled
+copies under its own `templates/`. Template names are the same everywhere.
+
+Notes exist in two forms on purpose: the working Markdown/code notes and
+the typeset PDF. Long-term permanence matters, and having a lightweight
+working format alongside a polished archival format is a goal in itself.
+
+## Exports
+
+Every generated PDF lives in the `exports/` folder of its own source,
+mirroring the path of the note relative to the source root:
+`ALG4/C01-fundamentals/S1_1_N001_basic_programming_model.md` becomes
+`ALG4/exports/C01-fundamentals/S1_1_N001_basic_programming_model.pdf`.
+Compilation byproducts go to the hidden root `.build/` directory and are
+never versioned.
+
+The `exports/` location is decided by the Neovim exports module, which
+resolves the note's root by markers in priority order:
+`.exports-root` first, then version control roots, then README/LICENSE
+markers, falling back to the note's own folder. Each source directory
+carries `.exports-root`, which is what pins its exports to itself.
+
+## Materials
+
+`materials/` is the vocabulary across the workspace: the files that come
+from the source itself. A source's own PDFs, data files and downloads live
+in its `materials/`; books not being studied yet are staged in the root
+`materials/`, which also holds the track catalog
+(`catalogo-cursos-cs-es.pdf`). Images referenced by notes go to the root
+`attachments/`.
 
 ## Philosophy
-
-This way of learning is based on several principles:
 
 - Fundamentals before specialization.
 - Understanding before memorization.
 - Mathematical rigor where appropriate.
 - Programming and computation as means of understanding concepts, in any area.
 - Theory and practice should reinforce each other.
-- Areas of knowledge should reinforce each other, and connections across them are worth making explicit.
+- Areas of knowledge should reinforce each other, and connections across
+  them are worth making explicit.
 - Exercises are part of the learning process, not optional supplements.
-- Books are treated as primary sources of structured knowledge.
-- External resources are used when they improve understanding, not merely to increase the amount of material.
+- Sources are treated as primary structured knowledge; external resources
+  are used when they improve understanding, not merely to increase the
+  amount of material.
 - Depth is preferred over superficial coverage.
+- Conventions over classification: organization comes from predictable
+  patterns, not from manual processes.
 
-The purpose is not simply to collect completed books. The purpose is to develop a coherent understanding of the fundamental areas studied here and the ability to apply that knowledge independently.
-
-## Sources
-
-This repository draws inspiration from established university programs and their course structures, in Computer Science as well as in Mathematics, Physics, Machine Learning, and other fields.
-
-Books are selected according to the role they play in the overall journey rather than solely according to popularity or convenience.
-
-The repository may therefore combine textbooks from different institutions, authors, and areas when doing so provides a stronger overall education.
+The purpose is not simply to collect completed sources. The purpose is to
+develop a coherent understanding of the fundamental areas studied here
+and the ability to apply that knowledge independently.
 
 ## Private Material
 
-Directories beginning with `_` are considered private and are intentionally excluded from version control.
-
-```text
-_drafts/
-_notes/
-_private/
-```
-
-This allows personal or unpublished material to coexist with the public portion of the repository without being committed to Git.
-
-## Repository Conventions
-
-- Each book has a unique directory identifier derived from its title, optionally followed by its edition number.
-- Each book directory contains a `meta.md`.
-- `meta.md` contains bibliographic information, book metadata, and reading progress.
-- Book-specific material stays inside its corresponding book directory.
-- The root `templates/` directory holds the base `meta.md` and LaTeX note templates; each book keeps its own pre-filled copies under its own `templates/`.
-- Shared resources and templates are kept in `resources/`.
-- All generated PDFs, from Markdown, LaTeX and Typst notes, are kept in the single root `exports/` folder, mirroring the path of their source note.
-- Compilation byproducts go to the hidden root `.build/` folder and are never versioned.
-- Directories beginning with `_` are private.
-- Generated files and build artifacts are excluded from version control, with the exception of the PDFs in `exports/`, which are kept intentionally.
-- External resources are recorded in the `Links` section of the corresponding `meta.md`.
-
-## Status
-
-This is a long-term project and is expected to evolve over time.
-
-Books and entire areas of study may be added, removed, reordered, or replaced as the overall structure is refined.
-
-The sequence and organization of the programming track can always be found in `resources/catalogo-cursos-cs-es.pdf`. The other areas have no catalog of their own; they grow book by book, each one documented in its `meta.md`.
+Directories beginning with `_` are private and intentionally excluded
+from version control. They allow personal or unpublished material to
+coexist with the public portion of the repository.
 
 ## Useful Links
 
