@@ -6,7 +6,7 @@
 ;;; Location:      p. 32
 ;;;
 ;;; Usage:
-;;;   Run:      $ mit-scheme --quiet --load S1_1_7_X006_alternative_compute_squere_roots.scm
+;;;   Run: $ mit-scheme --quiet --load S1_1_7_X006_alternative_compute_squere_roots.scm
 ;;;   To evaluate line by line, use ,ee and ,er in the REPL.
 ;;;
 ;;; The exercise is stated below.
