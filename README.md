@@ -56,7 +56,9 @@ A unit directory contains only flat study files — never subfolders.
 There are no `notes/` and `exercises/` directories: the type prefix in
 each filename already tells what a file is, and flat files keep every
 artifact of a unit side by side. An atomic source (an article or paper)
-has no unit directories; its files sit directly in the source root.
+has no unit directories; its files sit directly in the source root. A problem
+set is also flat: each problem is a single file in the source root, numbered
+in the order it was solved, because the platform imposes no chapter order.
 
 Files follow one universal pattern:
 
@@ -147,10 +149,12 @@ as the programming language used in exercises, live in the source's own
 
 ## Templates
 
-The root `templates/` directory holds the base templates: the `meta.md`
-bookplate template and one LaTeX template per language (`notes-en.tex`,
-`notes-pt-br.tex`). A source with conventions of its own keeps pre-filled
-copies under its own `templates/`. Template names are the same everywhere.
+The root `templates/` directory holds the base templates: the
+`meta-template.md` bookplate template and a LaTeX template per language
+(`notes-en.tex`, `notes-pt-br.tex`). A source with conventions of its own
+keeps pre-filled copies under its own `templates/`; until a language
+template reaches the root, it lives only in the source that uses it.
+Template names are the same everywhere.
 
 Notes exist in two forms on purpose: the working Markdown/code notes and
 the typeset PDF. Long-term permanence matters, and having a lightweight
