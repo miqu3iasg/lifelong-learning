@@ -4,8 +4,8 @@
  * Created:       2026-11-20
  * Source:        https://leetcode.com/problems/two-sum/description/
  *
- * Compilation:   $ javac -d out S00_X001_TwoSum.java
- * Execution:     $ java -cp out S00_X001_TwoSum
+ * Compilation:   $ javac -d out/S00_X001_TwoSum S00_X001_TwoSum.java
+ * Execution:     $ java -cp out/S00_X001_TwoSum S00_X001_TwoSum
  *
  * References:
  *   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html
