@@ -43,12 +43,13 @@ here first.
   </picture>
 </p>
 
-<p>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/miqu3iasg/opus0xDEAD/stats/progress-dark.svg">
-    <img alt="Progress by source" src="https://raw.githubusercontent.com/miqu3iasg/opus0xDEAD/stats/progress-light.svg">
-  </picture>
-</p>
+<!-- <p> -->
+<!--   <picture> -->
+<!--     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/miqu3iasg/opus0xDEAD/stats/progress-dark.svg"> -->
+<!--     <img alt="Progress by source" src="https://raw.githubusercontent.com/miqu3iasg/opus0xDEAD/stats/progress-light.svg"> -->
+<!--   </picture> -->
+<!-- </p> -->
+
 <p>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/miqu3iasg/opus0xDEAD/stats/evolution-dark.svg">
