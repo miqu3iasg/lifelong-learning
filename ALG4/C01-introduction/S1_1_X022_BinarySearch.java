@@ -87,6 +87,8 @@ public class S1_1_X022_BinarySearch
             indent += "\t";
         }
 
+        /* Another approach could be `String indent = "        ".repeat(depth);` */
+
         System.out.println(
             indent + "[" + depth + "] rank(lo=" + lo + ", hi=" + hi + ")"
         );

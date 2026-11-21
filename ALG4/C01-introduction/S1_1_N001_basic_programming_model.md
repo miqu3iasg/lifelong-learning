@@ -1,12 +1,12 @@
 ---
 title: Java basics, definition of algorithms and basic programming model
 tags:
-    -
-description:
+    - algorithms
+    - programming
+description: An introduction about algorithms.
 authors: Robert Sedgewick, Kevin Wayne
 source: Algorithms, 4th
-aliases:
-    -
+location: ch. 1, sec. 1.1, pp. 1-41
 lang: en-US
 date: 2026-11-13T12:46:48
 id: 79b9db14-d50c-4a14-bf09-e9c88e85c133
@@ -144,14 +144,6 @@ $ java RandomSeq 1000 100.0 200.0 | java Average
 ```
 
 This command basically says: _"get the output returned from RandomSeq and use it as the input for the Average implementation"._
-
-<!-- Stopped at p. 41 -->
-
-<!--
-TODO: before move on to the next section and finish all exercises, I need to
-	- Resolve exercises 1.1.24 and 1.1.25 X
-	- Resolve exercises 1.1.16 through 1.1.22 -> in progress...
--->
 
 # Reference
 
