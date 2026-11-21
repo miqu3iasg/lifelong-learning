@@ -1,5 +1,3 @@
-</p>
-
 # Lifelong Learning
 
 A self-directed journey of learning built around sources: books, courses,
