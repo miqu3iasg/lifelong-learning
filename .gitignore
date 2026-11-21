@@ -1,7 +1,6 @@
 # Private directories and files
 _*/
 exports/_*/
-tools/
 
 # Git
 .git/
