@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: America/Bahia
-      STATS_OUT: ${{ runner.temp }}/stats
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,6 +23,8 @@ jobs:
         with:
           python-version: "3.12"
       - name: Generate dashboard
+        env:
+          STATS_OUT: ${{ runner.temp }}/stats
         run: python tools/stats.py
       - name: Publish to the stats branch
         working-directory: ${{ runner.temp }}/stats
