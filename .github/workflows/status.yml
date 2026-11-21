@@ -5,9 +5,6 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths-ignore:
-      - "attachments/stats/**"
-      - "README.md"
 permissions:
   contents: write
 concurrency:
@@ -18,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: America/Bahia
+      STATS_OUT: ${{ runner.temp }}/stats
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,18 +25,14 @@ jobs:
           python-version: "3.12"
       - name: Generate dashboard
         run: python tools/stats.py
-      - name: Commit changes
+      - name: Publish to the stats branch
+        working-directory: ${{ runner.temp }}/stats
         run: |
+          git init -q -b stats
           git config user.name "github-actions"
           git config user.email "41898282+github-actions@users.noreply.github.com"
-          git add attachments/stats README.md
-          if git diff --cached --quiet; then
-            echo "nothing to commit"
-            exit 0
-          fi
-          git commit -m "chore(stats): update dashboard"
-          for i in 1 2 3; do
-            git pull --rebase origin "$GITHUB_REF_NAME" && git push && exit 0
-            sleep 5
-          done
-          exit 1
+          git add -A
+          git commit -q -m "chore(stats): update dashboard"
+          git push --force \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" \
+            stats

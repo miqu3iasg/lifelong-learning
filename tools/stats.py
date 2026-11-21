@@ -12,20 +12,33 @@ Generated files:
     ``attachments/stats/progress-{light,dark}.svg``
     ``attachments/stats/evolution-{light,dark}.svg``
 
-The script also replaces the section between ``<!-- stats:start -->`` and
-``<!-- stats:end -->`` in README.md.
+    ``badges/<slug>.json`` (shields.io endpoint data, one file per badge)
+
+The script never touches README.md. The README is static and points to the
+generated files published on the ``stats`` branch, so the dashboard never
+commits to ``main``.
+
+Environment:
+    STATS_OUT: Output directory. Defaults to ``attachments/stats``.
+    STATS_BASE: Public base URL of the published files (used by
+        ``--print-block``), e.g.
+        ``https://raw.githubusercontent.com/USER/REPO/stats``.
 
 Usage:
-    python tools/stats.py: Regenerate all dashboard assets and README stats.
+    python tools/stats.py: Regenerate all dashboard assets and badge data.
     python tools/stats.py --check: Print what is and is not being counted
         without modifying any files.
+    python tools/stats.py --print-block: Print the static README block
+        (run once, paste into README.md between the stats markers).
 """
 
 from __future__ import annotations
 
 import datetime as dt
 import html
+import json
 import math
+import os
 import re
 import subprocess
 import sys
@@ -34,8 +47,8 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "attachments" / "stats"
-README = ROOT / "README.md"
+OUT = Path(os.environ.get("STATS_OUT") or ROOT / "attachments" / "stats")
+BASE = os.environ.get("STATS_BASE", "").rstrip("/")
 START, END = "<!-- stats:start -->", "<!-- stats:end -->"
 
 # Everything that decides "what counts" lives in this block.
@@ -599,21 +612,70 @@ def banner() -> str:
     return svg(w, h, body, "Lifelong Learning banner")
 
 
-def badge(label: str, value, color: str) -> str:
-    """Create a shields.io badge image for a dashboard statistic.
+def slug(label: str) -> str:
+    """Turn a badge label into a filename-safe slug."""
+    return re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
+
+
+def badge_items(data: dict, counts: Counter, today: dt.date) -> list[tuple]:
+    """List the dashboard badges.
 
     Args:
-        label: Badge label.
-        value: Statistic displayed by the badge.
-        color: Hex color without the leading ``#``.
+        data: Aggregated source, file-type, PDF, and skipped-path statistics.
+        counts: Commit counts indexed by date.
+        today: Reference date used for activity statistics.
 
     Returns:
-        An HTML image element containing the badge URL.
+        A list of ``(label, value, hex_color)`` tuples.
     """
-    q = lambda s: quote(str(s).replace("-", "--").replace("_", "__"), safe="")
+    srcs = data["sources"].values()
+    units = sum(len(s["units"]) for s in srcs)
+    tot = {ty: sum(s[ty] for s in srcs) for ty in TYPES}
+    days = set(counts)
+    cur, longest = streaks(days, today)
+    active = sum(1 for d in days if today - dt.timedelta(days=364) <= d <= today)
+    return [
+        ("sources", len(data["sources"]), "0969da"),
+        ("units", units, "1f6feb"),
+        *[(TYPES[ty]["name"], tot[ty], TYPES[ty]["badge"]) for ty in TYPES],
+        ("PDFs", data["pdfs"], "6e7781"),
+        ("current streak", f"{cur} d", "2da44e"),
+        ("longest streak", f"{longest} d", "238636"),
+        ("active days / 365", active, "216e39"),
+    ]
+
+
+def write_badges(items: list[tuple]) -> None:
+    """Write one shields.io endpoint JSON file per badge.
+
+    Args:
+        items: Badge tuples returned by :func:`badge_items`.
+    """
+    d = OUT / "badges"
+    d.mkdir(parents=True, exist_ok=True)
+    for label, value, color in items:
+        payload = {
+            "schemaVersion": 1,
+            "label": label,
+            "message": str(value),
+            "color": color,
+        }
+        (d / f"{slug(label)}.json").write_text(json.dumps(payload), encoding="utf-8")
+
+
+def badge(label: str) -> str:
+    """Create a shields.io endpoint badge image for a dashboard statistic.
+
+    Args:
+        label: Badge label, used to locate its JSON file.
+
+    Returns:
+        An HTML image element pointing to the published badge data.
+    """
+    url = quote(f"{BASE}/badges/{slug(label)}.json", safe="")
     return (
-        f'<img alt="{esc(label)}" src="https://img.shields.io/badge/'
-        f'{q(label)}-{q(value)}-{color}?style=flat-square">'
+        f'<img alt="{esc(label)}" '
+        f'src="https://img.shields.io/endpoint?url={url}&style=flat-square">'
     )
 
 
@@ -629,43 +691,26 @@ def picture(name: str, alt: str) -> str:
     """
     return (
         "<picture>\n"
-        f'  <source media="(prefers-color-scheme: dark)" srcset="attachments/stats/{name}-dark.svg">\n'
-        f'  <img alt="{alt}" src="attachments/stats/{name}-light.svg">\n'
+        f'  <source media="(prefers-color-scheme: dark)" srcset="{BASE}/{name}-dark.svg">\n'
+        f'  <img alt="{alt}" src="{BASE}/{name}-light.svg">\n'
         "</picture>"
     )
 
 
-def build_block(data: dict, counts: Counter, today: dt.date) -> str:
-    """Build the generated README section containing badges and charts.
+def build_block(items: list[tuple]) -> str:
+    """Build the static README section containing badges and charts.
 
     Args:
-        data: Aggregated source, file-type, PDF, and skipped-path statistics.
-        counts: Commit counts indexed by date.
-        today: Reference date used for activity statistics.
+        items: Badge tuples returned by :func:`badge_items`.
 
     Returns:
         Markdown-compatible HTML bounded by the README stats markers.
     """
-    srcs = data["sources"].values()
-    units = sum(len(s["units"]) for s in srcs)
-    tot = {ty: sum(s[ty] for s in srcs) for ty in TYPES}
-    days = set(counts)
-    cur, longest = streaks(days, today)
-    active = sum(1 for d in days if today - dt.timedelta(days=364) <= d <= today)
-    badges = [
-        badge("sources", len(data["sources"]), "0969da"),
-        badge("units", units, "1f6feb"),
-        *[badge(TYPES[ty]["name"], tot[ty], TYPES[ty]["badge"]) for ty in TYPES],
-        badge("PDFs", data["pdfs"], "6e7781"),
-        badge("current streak", f"{cur} d", "2da44e"),
-        badge("longest streak", f"{longest} d", "238636"),
-        badge("active days / 365", active, "216e39"),
-    ]
     return "\n".join(
         [
             START,
             '<div align="center">',
-            "<p>" + " ".join(badges) + "</p>",
+            "<p>" + " ".join(badge(label) for label, _, _ in items) + "</p>",
             "<p>" + picture("heatmap", "Commit heatmap") + "</p>",
             "<p>" + picture("progress", "Progress by source") + "</p>",
             "<p>" + picture("evolution", "Cumulative growth") + "</p>",
@@ -673,22 +718,6 @@ def build_block(data: dict, counts: Counter, today: dt.date) -> str:
             END,
         ]
     )
-
-
-def update_readme(block: str) -> None:
-    """Replace the generated statistics section in the repository README.
-
-    Args:
-        block: New content to insert between the stats markers.
-
-    Raises:
-        SystemExit: If the expected markers are not present in README.md.
-    """
-    text = README.read_text(encoding="utf-8")
-    pattern = re.compile(re.escape(START) + r".*?" + re.escape(END), re.S)
-    if not pattern.search(text):
-        sys.exit(f"markers {START} / {END} not found in README.md")
-    README.write_text(pattern.sub(lambda _: block, text, count=1), encoding="utf-8")
 
 
 def check(data: dict) -> None:
@@ -716,8 +745,9 @@ def check(data: dict) -> None:
 def main() -> None:
     """Run the statistics check or regenerate all dashboard assets.
 
-    With ``--check``, print the classification report and exit. Otherwise,
-    generate the SVG assets and update the statistics section in README.md.
+    With ``--check``, print the classification report and exit. With
+    ``--print-block``, print the static README block and exit. Otherwise,
+    generate the SVG assets and badge data into ``OUT``.
     """
     today = dt.date.today()
     if "--check" in sys.argv[1:]:
@@ -725,6 +755,10 @@ def main() -> None:
         return
     counts = commit_counts()
     data = collect(today)
+    items = badge_items(data, counts, today)
+    if "--print-block" in sys.argv[1:]:
+        print(build_block(items))
+        return
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "banner.svg").write_text(banner(), encoding="utf-8")
     for name, t in THEMES.items():
@@ -737,7 +771,7 @@ def main() -> None:
         (OUT / f"evolution-{name}.svg").write_text(
             evolution(data["by_type_day"], t), encoding="utf-8"
         )
-    update_readme(build_block(data, counts, today))
+    write_badges(items)
     print(f"ok: {len(data['sources'])} sources, {sum(counts.values())} commits")
 
 
