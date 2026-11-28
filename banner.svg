@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="240" viewBox="0 0 1200 240" role="img" aria-label="Lifelong Learning banner" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0b1020"/><stop offset="1" stop-color="#16213e"/>
+  </linearGradient>
+  <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+    <path d="M24 0H0V24" fill="none" stroke="#7aa2ff" stroke-opacity="0.08"/>
+  </pattern>
+  <linearGradient id="accent" x1="0" x2="1">
+    <stop offset="0" stop-color="#58a6ff"/><stop offset="1" stop-color="#3fb950"/>
+  </linearGradient>
+</defs>
+<rect width="1200" height="240" rx="14" fill="url(#bg)"/>
+<rect width="1200" height="240" rx="14" fill="url(#grid)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M690 112H1170M700 40V190" stroke="#ffffff" stroke-opacity="0.10"/>
+  <path d="M700,112.0 L708,106.1 L716,100.4 L724,95.1 L732,90.2 L740,86.0 L748,82.6 L756,80.1 L764,78.5 L772,78.0 L780,78.5 L788,80.0 L796,82.4 L804,85.8 L812,89.9 L820,94.7 L828,100.1 L836,105.7 L844,111.6 L852,117.5 L860,123.2 L868,128.6 L876,133.5 L884,137.7 L892,141.2 L900,143.8 L908,145.4 L916,146.0 L924,145.6 L932,144.2 L940,141.8 L948,138.5 L956,134.4 L964,129.6 L972,124.3 L980,118.6 L988,112.8 L996,106.9 L1004,101.1 L1012,95.7 L1020,90.8 L1028,86.5 L1036,83.0 L1044,80.4 L1052,78.7 L1060,78.0 L1068,78.4 L1076,79.7 L1084,82.1 L1092,85.3 L1100,89.3 L1108,94.1 L1116,99.3 L1124,105.0 L1132,110.9 L1140,116.8 L1148,122.5 L1156,127.9" stroke="#58a6ff" stroke-opacity="0.35" stroke-width="2"/>
+  <path d="M700,90.0 L708,90.8 L716,93.1 L724,96.7 L732,101.4 L740,106.8 L748,112.6 L756,118.4 L764,123.7 L772,128.2 L780,131.6 L788,133.5 L796,134.0 L804,132.8 L812,130.3 L820,126.4 L828,121.5 L836,115.9 L844,110.1 L852,104.4 L860,99.2 L868,94.9 L876,91.9 L884,90.2 L892,90.1 L900,91.6 L908,94.5 L916,98.6 L924,103.7 L932,109.4 L940,115.2 L948,120.8 L956,125.8 L964,129.8 L972,132.6 L980,133.9 L988,133.7 L996,131.9 L1004,128.7 L1012,124.3 L1020,119.1 L1028,113.4 L1036,107.5 L1044,102.0 L1052,97.2 L1060,93.4 L1068,91.0 L1076,90.0 L1084,90.6 L1092,92.7 L1100,96.2 L1108,100.7 L1116,106.1 L1124,111.9 L1132,117.7 L1140,123.1 L1148,127.7 L1156,131.2" stroke="#3fb950" stroke-opacity="0.28" stroke-width="2"/>
+  <g stroke="#bc8cff" stroke-opacity="0.30" stroke-width="1.5"><line x1="742" y1="196" x2="820" y2="168"/><line x1="820" y1="168" x2="900" y2="204"/><line x1="900" y1="204" x2="985" y2="174"/><line x1="985" y1="174" x2="1070" y2="208"/><line x1="1070" y1="208" x2="1140" y2="180"/></g>
+  <g fill="#bc8cff" fill-opacity="0.45" stroke="none"><circle cx="742" cy="196" r="4"/><circle cx="820" cy="168" r="4"/><circle cx="900" cy="204" r="4"/><circle cx="985" cy="174" r="4"/><circle cx="1070" cy="208" r="4"/><circle cx="1140" cy="180" r="4"/></g>
+</g>
+<text x="70" y="108" font-size="54" font-weight="700" fill="#ffffff">Lifelong Learning</text>
+<rect x="70" y="124" width="120" height="4" rx="2" fill="url(#accent)"/>
+<text x="70" y="164" font-size="20" fill="#c9d4f0">Sources, not platforms. Fundamentals before specialization.</text>
+<text x="70" y="196" font-size="14" fill="#8b9bc4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">Computer Science · Mathematics · Physics · Machine Learning</text>
+</svg>
